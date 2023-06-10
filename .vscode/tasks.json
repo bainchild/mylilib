@@ -1,0 +1,50 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "command": "clear && lua build.lua build \"env=${input:type}\" logLevel=${input:logLevel}",
+            "problemMatcher": []
+        },
+        {
+            "label": "bundle",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "command": "clear && lua build.lua bundle",
+            "problemMatcher": []
+        },
+        {
+            "label": "clean",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "command": "clear && lua build.lua clean",
+            "problemMatcher": []
+        }
+    ],
+    "inputs": [
+        {
+            "id": "type",
+            "type": "pickString",
+            "description": "build enviroment or type",
+            "options": ["development","prod_alpha","prod_beta","production"],
+            "default": "development"
+        },
+        {
+            "id": "logLevel",
+            "type": "pickString",
+            "description": "LOG() macro level",
+            "options": ["error","warning","info","debug","trace","off"],
+            "default": "warning"
+        }
+    ]
+}
